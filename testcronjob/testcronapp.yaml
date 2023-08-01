@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: cronjob/testcronjob
+    path: testcronjob/
     repoURL: https://github.com/ashishamway/sample-app-deployment
   syncPolicy:
     syncOptions:
