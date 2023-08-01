@@ -18,8 +18,14 @@ spec:
             echo -e "Starting post sync job at $(date). \n"
             curl -s https://slack.com/api/chat.postMessage \
             -X POST -d '{"channel": "test-ashish"}' -d '{"text": "Job Finished."}' \
-            -H 'Authorization: Bearer xoxb-'
+            -H 'Authorization: Bearer xoxb-$(API_KEY)'
             echo
             echo -e "Complete post sync job at $(date). \n"      
+        env:
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: my-api-secret
+              key: api_key
       restartPolicy: Never
   backoffLimit: 0
