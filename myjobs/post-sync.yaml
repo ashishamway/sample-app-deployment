@@ -19,7 +19,7 @@ spec:
           - "curl"
           - "-d 'text=Job Finished.'"
           - "-d 'channel=test-ashish'"
-          - "-H 'Authorization: Bearer xoxb-433879848112-4400281121317-ucIkbjh5Zz29McHb0AP3NvH2'"
+          - "-H 'Authorization: Bearer xoxb-'"
           - "-X POST https://slack.com/api/chat.postMessage"   
       restartPolicy: Never
   backoffLimit: 0
