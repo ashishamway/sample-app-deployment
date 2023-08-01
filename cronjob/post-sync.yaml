@@ -15,7 +15,15 @@ spec:
       containers:
       - name: slack-notification
         image: curlimages/curl
-        command: ["curl", "https://slack.com/api/chat.postMessage"]
-        args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Finished."}', "-H", "Authorization: Bearer xoxb-"]        
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            echo "Starting post sync job at $date."
+            curl https://slack.com/api/chat.postMessage \
+            -X POST -d {"channel": "test-ashish"} -d {"text": "Job Finished."} \
+            -H Authorization: Bearer xoxb-
+            echo "Complete post sync job at $date."      
+        #command: ["curl", "https://slack.com/api/chat.postMessage"]
+        #args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Finished."}', "-H", "Authorization: Bearer xoxb-"]        
       restartPolicy: Never
   backoffLimit: 0
