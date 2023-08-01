@@ -19,11 +19,5 @@ spec:
       - name: slack-notification
         image: curlimages/curl
         command: ["curl", "https://slack.com/api/chat.postMessage"]
-        args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Starting."}', "-H", "Authorization: Bearer xoxb-"]
-        # command:
-        #   - "curl"
-        #   - "-d 'text=Job Starting.'"
-        #   - "-d 'channel=test-ashish'"
-        #   - "-H 'Authorization: Bearer xoxb-'"
-        #   - "-X POST https://slack.com/api/chat.postMessage"         
+        args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Starting."}', "-H", "Authorization: Bearer xoxb-"]      
   backoffLimit: 1
