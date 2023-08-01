@@ -21,11 +21,11 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           - |
-            echo "Starting pre sync job at $date."
+            echo -e "Starting pre sync job at $(date)."
             curl https://slack.com/api/chat.postMessage \
-            -X POST -d {"channel": "test-ashish"} -d {"text": "Job Starting."} \
-            -H Authorization: Bearer xoxb-
-            echo "Complete pre sync job at $date."              
+            -X POST -d '{"channel": "test-ashish"}' -d '{"text": "Job Starting."}' \
+            -H 'Authorization: Bearer xoxb-'
+            echo -e "Complete pre sync job at $(date)."              
         #command: ["curl", "https://slack.com/api/chat.postMessage"]
         #args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Starting."}', "-H", "Authorization: Bearer xoxb-"]      
   backoffLimit: 1
