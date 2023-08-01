@@ -18,11 +18,12 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           - |
-            echo -e "Starting post sync job at $(date)."
+            echo -e "Starting post sync job at $(date). \n"
             curl https://slack.com/api/chat.postMessage \
             -X POST -d '{"channel": "test-ashish"}' -d '{"text": "Job Finished."}' \
             -H 'Authorization: Bearer xoxb-'
-            echo -e "Complete post sync job at $(date)."      
+            echo
+            echo -e "Complete post sync job at $(date). \n"      
         #command: ["curl", "https://slack.com/api/chat.postMessage"]
         #args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Finished."}', "-H", "Authorization: Bearer xoxb-"]        
       restartPolicy: Never
