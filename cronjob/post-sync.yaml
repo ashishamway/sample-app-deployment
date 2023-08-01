@@ -3,15 +3,12 @@ kind: Job
 metadata:
   name: after
   annotations:
+    argocd.argoproj.io/ignore: "true"  
     argocd.argoproj.io/hook: PostSync
     #argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
-      # containers:
-      # - name: sleep
-      #   image: alpine:latest
-      #   command: ["echo", "post-sync"]
       containers:
       - name: slack-notification
         image: curlimages/curl
@@ -24,7 +21,5 @@ spec:
             -H 'Authorization: Bearer xoxb-'
             echo
             echo -e "Complete post sync job at $(date). \n"      
-        #command: ["curl", "https://slack.com/api/chat.postMessage"]
-        #args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Finished."}', "-H", "Authorization: Bearer xoxb-"]        
       restartPolicy: Never
   backoffLimit: 0

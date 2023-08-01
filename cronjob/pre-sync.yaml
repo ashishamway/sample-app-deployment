@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: before
   annotations:
+    argocd.argoproj.io/ignore: "true"      
     argocd.argoproj.io/hook: PreSync
     #argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
@@ -11,10 +12,6 @@ spec:
   template:
     spec:
       restartPolicy: Never
-      # containers:
-      # - name: sleep
-      #   image: alpine:latest
-      #   command: ["echo", "pre-sync"]
       containers:
       - name: slack-notification
         image: curlimages/curl
@@ -27,6 +24,4 @@ spec:
             -H 'Authorization: Bearer xoxb-'
             echo
             echo -e "Complete pre sync job at $(date). \n"              
-        #command: ["curl", "https://slack.com/api/chat.postMessage"]
-        #args: ["-X", "POST", "-d", '{"channel": "test-ashish"}', "-d", '{"text": "Job Starting."}', "-H", "Authorization: Bearer xoxb-"]      
   backoffLimit: 1

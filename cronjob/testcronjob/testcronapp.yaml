@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  managedFields:
+  name: cronapp
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cronjob/testcronjob
+    repoURL: https://github.com/ashishamway/sample-app-deployment
+  syncPolicy:
+    syncOptions:
+    - PruneLast=true
