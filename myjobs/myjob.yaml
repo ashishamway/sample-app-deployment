@@ -1,0 +1,15 @@
+metadata:
+  managedFields:
+  name: myjob
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: myjobs/
+    repoURL: https://github.com/ashishamway/sample-app-deployment
+  syncPolicy:
+    syncOptions:
+    - PruneLast=true
