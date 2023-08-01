@@ -19,7 +19,7 @@ spec:
         args:
           - |
             echo -e "Starting post sync job at $(date). \n"
-            curl https://slack.com/api/chat.postMessage \
+            curl -s https://slack.com/api/chat.postMessage \
             -X POST -d '{"channel": "test-ashish"}' -d '{"text": "Job Finished."}' \
             -H 'Authorization: Bearer xoxb-'
             echo
