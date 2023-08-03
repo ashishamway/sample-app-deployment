@@ -6,9 +6,19 @@ metadata:
   #   argocd.argoproj.io/ignore: "true"  
 spec:
   schedule: "*/2 * * * *"
+  apiVersion: batch/v1
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 3
   jobTemplate:
+    metadata:
+      labels: 
+        cronjob: helloworld
     spec:
       template:
+        metadata:
+          labels: 
+            cronjob: helloworld
         spec:
           containers:
           - name: hello
@@ -18,4 +28,4 @@ spec:
             - /bin/sh
             - -c
             - date; echo Hello from the Kubernetes cluster; sleep 60; date
-          restartPolicy: OnFailure
+          restartPolicy: Never
