@@ -26,5 +26,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - date; echo Hello from the Kubernetes cluster; sleep 60; date; exit 1;
+            - date; echo Hello from the Kubernetes cluster; sleep 60; date; exit 0;
           restartPolicy: Never
