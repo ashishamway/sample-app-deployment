@@ -1,9 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  managedFields:
   name: cronapp
   namespace: argocd
+  labels:
+    app.kubernetes.io/name: cronapp-local-cluster
+    app.kubernetes.io/version: HEAD
+    app.kubernetes.io/managed-by: argocd
 spec:
   destination:
     namespace: default
@@ -13,5 +16,9 @@ spec:
     path: cronjob/
     repoURL: https://github.com/ashishamway/sample-app-deployment
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
-    - PruneLast=true
+      - CreateNamespace=true
+      - Replace=true

@@ -1,12 +1,11 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: hello
+  name: helloworld
   # annotations:
   #   argocd.argoproj.io/ignore: "true"  
 spec:
   schedule: "*/2 * * * *"
-  apiVersion: batch/v1
   concurrencyPolicy: Replace
   failedJobsHistoryLimit: 3
   successfulJobsHistoryLimit: 3
@@ -21,11 +20,11 @@ spec:
             cronjob: helloworld
         spec:
           containers:
-          - name: hello
+          - name: helloworld
             image: busybox:1.28
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
             - -c
-            - date; echo Hello from the Kubernetes cluster; sleep 60; date
+            - date; echo Hello from the Kubernetes cluster; sleep 60; date; exit 1;
           restartPolicy: Never
